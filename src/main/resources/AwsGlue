@@ -1,0 +1,20 @@
+fetch('http://localhost:5003/etlservices/loadfiles', {
+      method: 'post',
+      mode: 'no-cors' ,
+      headers: new Headers({
+     'Content-Type': 'application/json;charset=utf-8'
+        }),
+      body: JSON.stringify(opt)
+    }).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log('Created Gist:', data);
+    });
+
+   var opt = {
+     "filePath": "s3n://bucket/sub/file.csv",
+     "tablename": "Transactions",
+     "delimiter": ",",
+     "userid": 123456 ,
+     "file_format":"csv"
+   }

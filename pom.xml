@@ -1,0 +1,322 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.etl</groupId>
+  <artifactId>Etl</artifactId>
+  <version>1.0.0</version>
+  <name>${project.artifactId}</name>
+  <description>Extract, Transform and Load by Hiddime </description>
+  <inceptionYear>2015</inceptionYear>
+  <licenses>
+    <license>
+      <name>My License</name>
+      <url>http://....</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <encoding>UTF-8</encoding>
+    <scala.version>2.11.5</scala.version>
+    <scala.compat.version>2.11</scala.compat.version>
+    <jena.version>2.11.1</jena.version>
+    <sesame.version>2.7.11</sesame.version>
+    <akka.http.core.version>10.0.10</akka.http.core.version>
+    <akka.http.spray.json.version>2.4.11.2</akka.http.spray.json.version>
+    <franz.client>2.0.1</franz.client>
+    <mysql.version>6.0.6</mysql.version>
+    <hadoop.client>2.7.3</hadoop.client>
+    <spark.version>2.2.1</spark.version>
+    <kafka.version>1.0.0</kafka.version>
+    <spark_excel.version>0.9.9</spark_excel.version>
+    <circle.version>0.9.1</circle.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+<!--   &lt;!&ndash; https://mvnrepository.com/artifact/com.github.scala-incubator.io/scala-io-file &ndash;&gt;
+   <dependency>
+      <groupId>com.github.scala-incubator.io</groupId>
+      <artifactId>scala-io-file_${scala.compat.version}</artifactId>
+      <version>0.4.3</version>
+   </dependency>
+   &lt;!&ndash; https://mvnrepository.com/artifact/org.scala-lang.modules/scala-parser-combinators &ndash;&gt;
+   <dependency>
+       <groupId>org.scala-lang.modules</groupId>
+       <artifactId>scala-parser-combinators_${scala.compat.version}</artifactId>
+       <version>1.0.5</version>
+   </dependency>-->
+   <!-- https://mvnrepository.com/artifact/org.scala-lang.modules/scala-async -->
+   <dependency>
+       <groupId>org.scala-lang.modules</groupId>
+       <artifactId>scala-async_${scala.compat.version}</artifactId>
+       <version>0.9.5</version>
+   </dependency>
+
+
+
+      <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-http-core -->
+	<dependency>
+	    <groupId>com.typesafe.akka</groupId>
+	    <artifactId>akka-http-core_${scala.compat.version}</artifactId>
+	    <version>${akka.http.core.version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-http-spray-json-experimental -->
+	<dependency>
+	    <groupId>com.typesafe.akka</groupId>
+	    <artifactId>akka-http-spray-json-experimental_${scala.compat.version}</artifactId>
+	    <version>${akka.http.spray.json.version}</version>
+	</dependency>
+      <dependency>
+          <groupId>io.circe</groupId>
+          <artifactId>circe-generic_${scala.compat.version}</artifactId>
+          <version>${circle.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>io.circe</groupId>
+          <artifactId>circe-literal_${scala.compat.version}</artifactId>
+          <version>${circle.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>io.circe</groupId>
+          <artifactId>circe-parser_${scala.compat.version}</artifactId>
+          <version>${circle.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>io.circe</groupId>
+          <artifactId>circe-optics_${scala.compat.version}</artifactId>
+          <version>${circle.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>${mysql.version}</version>
+	</dependency>
+    <dependency>
+        <groupId>com.franz</groupId>
+        <artifactId>agraph-java-client</artifactId>
+        <version>${franz.client}</version>
+    </dependency>
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>1.0</version>
+	    <scope>system</scope>
+	    <systemPath>${project.basedir}/lib/json.jar</systemPath>
+	 </dependency>	
+	 
+	 <dependency>
+    	<groupId>org.apache.hadoop</groupId>
+    	<artifactId>hadoop-client</artifactId>
+    	<version>${hadoop.client}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-aws</artifactId>
+        <version>${hadoop.client}</version>
+    </dependency>
+
+    <dependency>
+    	<groupId>org.apache.spark</groupId>
+    	<artifactId>spark-core_${scala.compat.version}</artifactId>
+    	<version>${spark.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.spark</groupId>
+    	<artifactId>spark-sql_${scala.compat.version}</artifactId>
+    	<version>${spark.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-hive -->
+    <!--<dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-hive_${scala.compat.version}</artifactId>
+        <version>${spark.version}</version>
+    </dependency>-->
+
+      <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-graphx_2.11 -->
+	<dependency>
+	    <groupId>org.apache.spark</groupId>
+	    <artifactId>spark-graphx_${scala.compat.version}</artifactId>
+	    <version>${spark.version}</version>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/com.crealytics/spark-excel -->
+    <dependency>
+        <groupId>com.crealytics</groupId>
+        <artifactId>spark-excel_${scala.compat.version}</artifactId>
+        <version>${spark_excel.version}</version>
+    </dependency>
+    <dependency>
+         <groupId>org.apache.httpcomponents</groupId>
+         <artifactId>httpclient</artifactId>
+         <version>4.5.4</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+    <dependency>
+       <groupId>org.apache.kafka</groupId>
+       <artifactId>kafka-clients</artifactId>
+       <version>${kafka.version}</version>
+    </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>sqljdbc4</artifactId>
+        <version>4.0</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/lib/sqljdbc4-4.0.jar</systemPath>
+    </dependency>
+
+     <!-- <dependency>
+          <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-s3</artifactId>
+      </dependency>-->
+
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-csv</artifactId>
+          <version>2.8.7</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.8.7</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+          <version>2.8.7</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.fasterxml.jackson.module</groupId>
+          <artifactId>jackson-module-scala_2.11</artifactId>
+          <version>2.8.7</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.8.7</version>
+      </dependency>
+
+      <!--<dependency>
+          <groupId>com.amazonaws</groupId>
+          <artifactId>sagemaker-spark_2.11</artifactId>
+          <version>spark_2.2.0-1.0</version>
+      </dependency>-->
+      <!--<dependency>
+          <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-glue</artifactId>
+          <version>1.11.271</version>
+      </dependency>-->
+
+      <!--<dependency>
+          <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-glue</artifactId>
+          <version>1.11.238</version>
+      </dependency>-->
+      <dependency>
+          <groupId>commons-net</groupId>
+          <artifactId>commons-net</artifactId>
+          <version>3.6</version>
+      </dependency>
+
+
+      <dependency>
+       <groupId>com.amazonaws</groupId>
+       <artifactId>aws-java-sdk</artifactId>
+       <version>1.11.273</version>
+        <!--<exclusions>
+            <exclusion>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-glue</artifactId>
+            </exclusion>
+        </exclusions>-->
+    </dependency>
+      <!--<dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.9.3</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.9.3</version>
+      </dependency>-->
+
+
+      <!-- <dependency>
+          <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-s3</artifactId>
+          <version>1.11.163</version>
+       </dependency>-->
+
+
+      <!-- Test -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/scala</sourceDirectory>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <!-- see http://davidb.github.com/scala-maven-plugin -->
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>testCompile</goal>
+            </goals>
+            <!--<configuration>
+              <args>
+                <arg>-make:transitive</arg>
+                <arg>-dependencyfile</arg>
+                <arg>${project.build.directory}/.scala_dependencies</arg>
+              </args>
+            </configuration>-->
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <useFile>false</useFile>
+          <disableXmlReport>true</disableXmlReport>
+          <!-- If you have classpath issue like NoDefClassError,... -->
+          <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
+          <includes>
+            <include>**/*Test.*</include>
+            <include>**/*Suite.*</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
